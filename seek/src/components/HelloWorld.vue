@@ -12,6 +12,12 @@ export default {
   name: "HelloWorld",
   props: {
     msg: String
+  },
+  mounted() {
+    this.$EventBus.$on("aMsg", (msg) => {
+      // A发送来的消息
+     console.log(msg)
+    });
   }
 };
 </script>
