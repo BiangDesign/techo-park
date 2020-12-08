@@ -7,8 +7,13 @@ import "./config/touch"
 
 Vue.config.productionTip = false;
 
-Vue.prototype.$EventBus = new Vue();
+import 'animate.css';
+import 'fullpage-vue/src/fullpage.css';
+import VueFullpage from 'fullpage-vue';
 
+Vue.config.productionTip = false;
+
+Vue.use(VueFullpage);
 new Vue({
   router,
   store,
