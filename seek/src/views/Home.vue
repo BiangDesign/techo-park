@@ -15,6 +15,14 @@
               <div class="page-2 page">
                 <h2 class="part-2" v-animate="{value: 'bounceInRight'}">场景操作</h2>
                 <p v-animate="{value: 'bounceInRight'}">各种滑动</p>
+                <button @click="start">开始</button>
+                <button @click="clickScreen">点击屏幕开始</button>
+                <button @click="clickUp">向前滑动</button>
+                <!-- <button @click="">继续向前</button> -->
+                <button @click="clickLeft">向左滑动</button>
+                <button @click="throughRoodFinish">第五步 前进</button>
+                <button @click="stepSixRight">第六步</button>
+                <button @click="longTouch">长按</button>
               </div>
             </div>
 <!--            <div class="fullpage-pagination">-->
@@ -42,6 +50,7 @@
 </template>
 
 <script>
+import stateMixins from '../state.mixins'
 export default {
   data:function() {
     var that = this;
@@ -74,6 +83,7 @@ export default {
       active2:0
     };
   },
+  mixins: [stateMixins],
   methods: {
     moveTo: function(index) {
       this.$refs.fullpage.$fullpage.moveTo(index, true, true);
