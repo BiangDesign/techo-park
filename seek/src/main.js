@@ -2,6 +2,11 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import "./config/touch"
+// import "./config/slide";
+
+Vue.config.productionTip = false;
+
 import 'animate.css';
 import 'fullpage-vue/src/fullpage.css';
 import VueFullpage from 'fullpage-vue';

@@ -2,14 +2,24 @@
   <div class="">
     <div class="fullpage-vertical">
       <div class="" v-fullpage="opts" ref="fullpage">
-        <div class="page-1 page">
-          <h1 class="part-1" v-animate="{value: 'bounceInLeft'}">盲人世界</h1>
-          <h3 class="" v-animate="{value: 'bounceInLeft'}">这是一次声音的实验，我们要求您佩戴好耳机，跟随我们的脚步，一起进入一段轻松的旅程</h3>
-          <div>
-            <button class="part-1 part-1-btn" @click="moveTo(1)">点击屏幕开始吧</button>
+        <div class="page-1 page" :class="{'show-page-1': !isLoading}">
+          <loading v-if=isLoading />
+          <div class="page-1-content">
+            <h1 class="part-1" v-animate="{value: 'bounceInLeft'}">盲人世界</h1>
+            <h3 class="" v-animate="{value: 'bounceInLeft'}">这是一次声音的实验，我们要求您佩戴好耳机，跟随我们的脚步，一起进入一段轻松的旅程</h3>
+            <div>
+              <button class="part-1 part-1-btn" @click="moveTo(1)">点击屏幕开始吧</button>
+            </div>
           </div>
         </div>
-        <div class="page-2 page">
+        <div class="page-2 page"
+          v-tap="(e) => vueTouch('单击', e, false)"
+          v-longtap="(e) => longTap('长按', e)"
+          v-swipeleft="(e) => swipeLeft('left', e)"
+          v-swiperight="(e) => swipeRight('right', e)"
+          v-swipeup="(e) => swipeTop('top', e)"
+          v-swipedown="(e) => swipeBottom('bottom', e)"
+        >
           <div class="fullpage-horizontal">
             <div v-fullpage="horizontalOpts" ref="fullpageHorizontal">
               <div class="page-2 page">
@@ -51,10 +61,16 @@
 
 <script>
 import stateMixins from '../state.mixins'
+import loading from "./../components/loading";
 export default {
+  components: {
+    loading
+  },
+  mixins: [stateMixins],
   data:function() {
     var that = this;
     return {
+      isLoading: true,
       index: 0,
       pageNum: 0,
       disabled: false,
@@ -95,7 +111,47 @@ export default {
     setDisabled(){
       this.disabled = !this.disabled
       this.$refs.fullpage.$fullpage.setDisabled(this.disabled)
-    }
+    },
+    vueTouch(s, e) {
+      console.log(s, e);
+    },
+
+    slideTouch(s, e) {
+      console.log(s, e);
+    },
+    // 第一步 第三步
+    swipeTop(s, e) {
+      if (this.$data.step === 1) {
+        console.log(s, e);
+      }
+
+      if (this.$data.step === 3) {
+        console.log(s, e);
+      }
+    },
+    // 第二步
+    swipeLeft(s, e) {
+      if (this.$data.step === 2) {
+        console.log(s, e);
+      }
+    },
+    // 第四步
+    swipeRight(s, e) {
+      if (this.$data.step === 4) {
+        console.log(s, e);
+      }
+    },
+    // 第五部：长按
+    longTap(s, e) {
+      if (this.$data.step === 5) {
+        console.log(s, e);
+      }
+    },
+  },
+  mounted() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 3000)
   }
 };
 </script>
@@ -116,8 +172,18 @@ export default {
   color: #eee;
 }
 .page-1 {
-  padding-top: 100px;
   background: #ababab;
+  position: relative;
+  .page-1-content {
+    opacity: 0;
+  }
+}
+
+.show-page-1 {
+  .page-1-content {
+    opacity: 1;
+    transition: opacity 5s;
+  }
 }
 
 .part-1-btn {

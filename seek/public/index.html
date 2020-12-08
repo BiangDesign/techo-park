@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no, maximum-scale=1">
+    <!-- 去掉Windows Phone点击时的高亮效果 -->
+    <meta name="msapplication-tap-highlight" content="no" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <script src="./hammer.min.js"></script>
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
