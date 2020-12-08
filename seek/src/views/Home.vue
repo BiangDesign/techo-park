@@ -16,9 +16,6 @@
                 <h2 class="part-2" v-animate="{value: 'bounceInRight'}">场景操作</h2>
                 <p v-animate="{value: 'bounceInRight'}">各种滑动</p>
               </div>
-              <div class="page-5 page">
-                <p v-animate="{value: 'bounceInDown'}">horizontal 2</p>
-              </div>
             </div>
 <!--            <div class="fullpage-pagination">-->
 <!--              <div class="fullpage-pagination-bullet"-->
