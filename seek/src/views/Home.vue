@@ -197,6 +197,11 @@ export default {
   border-radius: 50%;
   width: 110px;
   height: 110px;
+  outline: none;
+  &:hover, &:active, &:focus {
+    border: none;
+    outline: none;
+  }
 }
 
 .page-2 {
