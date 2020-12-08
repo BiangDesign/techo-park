@@ -20,6 +20,11 @@
           v-swipeup="(e) => swipeTop('top', e)"
           v-swipedown="(e) => swipeBottom('bottom', e)"
         >
+          <div class="next-page">
+            <button @click="moveTo(2)">
+              <up />
+            </button>
+          </div>
           <div class="fullpage-horizontal">
             <div v-fullpage="horizontalOpts" ref="fullpageHorizontal">
               <div class="page-2 page">
@@ -62,9 +67,11 @@
 <script>
 import stateMixins from '../state.mixins'
 import loading from "./../components/loading";
+import up from "./../components/up";
 export default {
   components: {
-    loading
+    loading,
+    up,
   },
   mixins: [stateMixins],
   data:function() {
@@ -194,6 +201,22 @@ export default {
 
 .page-2 {
   background-color: #000000;
+  position: relative;
+  .next-page {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+    button {
+      background: #000000;
+      border: none;
+      outline: none;
+      &:hover, &:active, &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+  }
 }
 
 .page-3 {
