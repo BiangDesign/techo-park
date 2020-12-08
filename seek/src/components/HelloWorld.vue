@@ -1,12 +1,11 @@
 <template>
   <div class="hello" 
-    v-tap="e => vueTouch('单击', e)" 
+    v-tap="e => vueTouch('单击', e, false)" 
     v-longtap="e => longTap('长按', e)" 
     v-swipeleft="e => swipeLeft('左滑动', e)" 
     v-swiperight="e => swipeLeft('右滑动', e)" 
     v-swipeup="e => swipeLeft('上滑动', e)" 
-    v-swipedown="e => swipeLeft('下滑动', e)"  
-    v-swipestart="e=>swipeEnd('开始', e)">
+    v-swipedown="e => swipeLeft('下滑动', e)">
     <p>
       这是一次声音的实验，我们要求您佩戴好耳机，跟随我们的脚步，一起进入一段轻松的旅程
     </p>
@@ -37,15 +36,15 @@ export default {
       console.log(s, e);
     },
     swipeLeft(s, e) {
-      if (s === this.direction) {
-         console.log(s)
-        if(this.lock) {return}
-         console.log(s, e);
-        if (e >= 5) {
-          this.direction = '左滑动';
-          this.lock = true
-        }
-      }
+      console.log(s, e)
+      // if (s === this.direction) {
+      //   if(this.lock) {return}
+      //    console.log(s, e);
+      //   if (e >= 5) {
+      //     // this.direction = '左滑动';
+      //     this.lock = true
+      //   }
+      // }
     },
     swipeEnd(s, e) {
       this.lock = false;

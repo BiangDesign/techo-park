@@ -2,7 +2,8 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import "./config/slide";
+import "./config/touch"
+// import "./config/slide";
 
 Vue.config.productionTip = false;
 
