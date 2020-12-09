@@ -25,6 +25,9 @@
             v-swipeup="(e) => swipeTop('top', e)"
              v-swipedown="(e) => swipeBottom('bottom', e)"
         >
+         <div id="container" class="container">
+          <span id="loading" class="loading" data-percent="0"></span>
+        </div>
           <div class="location-box">
             <direction location="top" v-if="(curStep === 0 || curStep === 1 ||curStep === 3 ||curStep === 5 ||curStep === 6 ||curStep === 8 )&& canClick"/>
             <direction location="left" v-if="(curStep === 2 )&& canClick"/>
@@ -38,8 +41,8 @@
           <div class="fullpage-horizontal">
             <div v-fullpage="horizontalOpts" ref="fullpageHorizontal">
               <div class="page-2 page">
-                <h2 class="part-2" v-animate="{value: 'bounceInRight'}">场景操作</h2>
-                <p v-animate="{value: 'bounceInRight'}">各种滑动</p>
+                <!-- <h2 class="part-2" v-animate="{value: 'bounceInRight'}">场景操作</h2> -->
+                <!-- <p v-animate="{value: 'bounceInRight'}">各种滑动</p> -->
 <!--                <button @click="start">开始</button>-->
 <!--                <button @click="clickScreen">点击屏幕开始</button>-->
 <!--                <button @click="clickUp">向前滑动</button>-->
@@ -82,6 +85,7 @@ import up from "./../components/up";
 import direction from "./../components/direction";
 import header from "./../components/header";
 import typed from "../components/typed";
+import play from '../config/video';
 export default {
   components: {
     loading,
@@ -138,16 +142,16 @@ export default {
     index: {
       handler(newName, oldName) {
         console.log('watch:' + 'oldName= '+ oldName + ', newName = ' + newName + ';');
-        if (newName === 1 && this.step < 8) {
-            this.setDisabled(true)
+        if (newName === 1 && this.curStep <= 8) {
+            this.setDisabled(true);
         }
       },
       immediate: true
     },
-    step: {
+    curStep: {
       handler(newName, oldName) {
         console.log('watch:' + 'oldName= '+ oldName + ', newName = ' + newName + ';');
-        if (this.index === 1 && newName >= 8) {
+        if (this.index === 1 && newName > 9) {
             this.setDisabled(false)
         }
       },
@@ -158,6 +162,7 @@ export default {
     moveTo: function(index) {
       if (this.step === 1 && this.canClick && index === 1) {  // 当第一页语音播放完成后 按钮可点击
         this.clickScreen()
+        play()
         this.$refs.fullpage.$fullpage.moveTo(index, true, true);
       }
       if (index >= 2) {
@@ -186,15 +191,18 @@ export default {
       console.error('123', this.step, this.canClick)
       if (this.curStep === 0 && this.canClick) {
         this.clickUp();
+        play(2);
       }
       // 播放宁夏
       if (this.curStep === 1 && this.canClick) {
         this.playSummer();
+        play(7);
       }
 
       // 过红绿灯
       if (this.curStep === 3 && this.canClick) {
         this.crossStreetAction();
+        play(4)
       }
 
        // 上滑，进入商店
@@ -219,13 +227,15 @@ export default {
       if (this.curStep === 2 && this.canClick) {
         console.log(s, e);
         this.truanLeft();
+        play(3)
       }
     },
     // 第四步
     swipeRight(s, e) {
       if (this.curStep === 4 && this.canClick) {
         console.log(s, e);
-        this.turnRightAction()
+        this.turnRightAction();
+        play(5)
       }
     },
     // 第五部：长按
@@ -233,6 +243,7 @@ export default {
       if (this.curStep === 7 && this.canClick) {
         console.log(s, e);
         this.longClick()
+        play(6)
       }
     },
     // 向下
@@ -433,6 +444,36 @@ button.disabled-btn{
     width: 100%;
     left: 0;
     z-index: 1;
-
+}
+.container {
+    width: 256px; height: 464px;
+    margin: auto;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.container > img {
+    position: absolute;
+    width: 100%; height: 100%;
+}
+.loading {
+    position: absolute;
+    height: 8px; width: 150px;
+    border: 1px solid #eee;
+    background: linear-gradient(to top, #eee, #eee);
+    background-size: 0 100%;
+    transition: background-size .1s;
+    left: 0; top: 0; right: 0; bottom: 0;
+    margin: auto;
+}
+.loading::before {
+    content: attr(data-percent)'%';
+    position: absolute;
+    left: 0; top: -1.5em;
+    font-size: 12px;
+    color: #eee;
 }
 </style>
