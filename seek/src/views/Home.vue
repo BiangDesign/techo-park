@@ -13,12 +13,12 @@
           </div>
         </div>
         <div class="page-2 page"
-          v-tap="(e) => vueTouch('单击', e, false)"
-          v-longtap="(e) => longTap('长按', e)"
-          v-swipeleft="(e) => swipeLeft('left', e)"
-          v-swiperight="(e) => swipeRight('right', e)"
-          v-swipeup="(e) => swipeTop('top', e)"
-          v-swipedown="(e) => swipeBottom('bottom', e)"
+            v-tap="(e) => vueTouch('单击', e, false)"
+            v-longtap="(e) => longTap('长按', e)"
+            v-swipeleft="(e) => swipeLeft('left', e)"
+            v-swiperight="(e) => swipeRight('right', e)"
+            v-swipeup="(e) => swipeTop('top', e)"
+             v-swipedown="(e) => swipeBottom('bottom', e)"
         >
           <div class="next-page">
             <button @click="moveTo(2)">
@@ -38,6 +38,7 @@
                 <button @click="throughRoodFinish">第五步 前进</button>
                 <button @click="stepSixRight">第六步</button>
                 <button @click="longTouch">长按</button>
+                <button @click="setDisabled()">禁止滚动</button>
               </div>
             </div>
 <!--            <div class="fullpage-pagination">-->
@@ -77,6 +78,7 @@ export default {
   data:function() {
     var that = this;
     return {
+      disabledScroll: false,
       isLoading: true,
       index: 0,
       pageNum: 0,
@@ -106,7 +108,6 @@ export default {
       active2:0
     };
   },
-  mixins: [stateMixins],
   methods: {
     moveTo: function(index) {
       this.$refs.fullpage.$fullpage.moveTo(index, true, true);
@@ -115,9 +116,12 @@ export default {
       this.pageNum++;
       this.$refs.fullpage.$fullpage.$update();
     },
+    // 禁止翻页
     setDisabled(){
-      this.disabled = !this.disabled
-      this.$refs.fullpage.$fullpage.setDisabled(this.disabled)
+      this.disabledScroll = !this.disabledScroll;
+      '-------------------------'.log
+      console.log(this.disabledScroll);
+      this.$refs.fullpage.$fullpage.setDisabled(this.disabledScroll)
     },
     vueTouch(s, e) {
       console.log(s, e);
