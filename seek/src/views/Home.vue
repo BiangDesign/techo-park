@@ -3,7 +3,7 @@
     <div class="fullpage-vertical">
       <div class="" v-fullpage="opts" ref="fullpage">
         <div class="page-1 page" :class="{'show-page-1': !isLoading}">
-          <loading v-if=isLoading />
+          <loading  />
           <div class="page-1-content">
             <div class="part-1-note">
               <img src="../../public/img/headset.gif" alt="headset">

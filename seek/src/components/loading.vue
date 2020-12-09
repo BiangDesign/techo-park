@@ -12,7 +12,7 @@
     <!--      </div>-->
     <!--    </div>-->
     <img src="../../public/img/headset.gif" alt="headset">
-    <span>请佩戴耳机以获得更好体验...</span>
+    <span>请佩戴耳机以获得更好体验</span>
   </div>
 </template>
 
@@ -27,6 +27,17 @@
 //  justify-content: center;
 //  background-color: #000000;
 //}
+@keyframes ellipsis {
+  to {
+    width: 30px;
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 30px;
+  }
+}
 .loading {
   position: absolute;
   width: 100%;
@@ -36,6 +47,15 @@
   justify-content: center;
   flex-direction: column;
   background-color: #000000;
+  &:after {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    -webkit-animation: ellipsis steps(4,end) 900ms infinite;
+    animation: ellipsis steps(4,end) 900ms infinite;
+    content: "\2026"; /* ascii code for the ellipsis character */
+    width: 0;
+  }
   img {
     width: 99px;
   }
