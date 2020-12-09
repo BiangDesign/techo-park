@@ -1,21 +1,43 @@
 <template>
   <div class="loading">
-    <div class="atom-spinner">
-      <div class="spinner-inner">
-        <div class="spinner-line"></div>
-        <div class="spinner-line"></div>
-        <div class="spinner-line"></div>
-        <!--Chrome renders little circles malformed :(-->
-        <div class="spinner-circle">
-          &#9679;
-        </div>
-      </div>
-    </div>
+    <!--    <div class="atom-spinner">-->
+    <!--      <div class="spinner-inner">-->
+    <!--        <div class="spinner-line"></div>-->
+    <!--        <div class="spinner-line"></div>-->
+    <!--        <div class="spinner-line"></div>-->
+    <!--        &lt;!&ndash;Chrome renders little circles malformed :(&ndash;&gt;-->
+    <!--        <div class="spinner-circle">-->
+    <!--          &#9679;-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <img src="../../public/img/headset.gif" alt="headset">
+    <span>请佩戴耳机以获得更好体验</span>
   </div>
 </template>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
+//.loading {
+//  position: absolute;
+//  width: 100%;
+//  height: 100%;
+//  display: flex;
+//  align-items: center;
+//  justify-content: center;
+//  background-color: #000000;
+//}
+@keyframes ellipsis {
+  to {
+    width: 30px;
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 30px;
+  }
+}
 .loading {
   position: absolute;
   width: 100%;
@@ -23,7 +45,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   background-color: #000000;
+  &:after {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    -webkit-animation: ellipsis steps(4,end) 900ms infinite;
+    animation: ellipsis steps(4,end) 900ms infinite;
+    content: "\2026"; /* ascii code for the ellipsis character */
+    width: 0;
+  }
+  img {
+    width: 99px;
+  }
+  span {
+    font-size: 14px;
+  }
 }
 .atom-spinner, .atom-spinner * {
   box-sizing: border-box;

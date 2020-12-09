@@ -1,15 +1,20 @@
 <template>
-  <div class="" @click="moveTo(1)">
+  <div class="">
     <div class="fullpage-vertical">
       <div class="" v-fullpage="opts" ref="fullpage">
         <div class="page-1 page" :class="{'show-page-1': !isLoading}">
           <loading v-if=isLoading />
           <div class="page-1-content">
+            <div class="next-page">
+              <button @click="moveTo(1)">
+                <up />
+              </button>
+            </div>
             <div class="part-1-note">
               <img src="../../public/img/headset.gif" alt="headset">
             </div>
             <div>
-              <h1 class="part-1-title">看“见”</h1>
+              <h1 class="part-1-title">听 · 见</h1>
               <typed :text="typedText" @finished="handleTypedFinished"></typed>
             </div>
 <!--            <div>-->
@@ -81,7 +86,7 @@
 <script>
 import stateMixins from '../state.mixins'
 import loading from "./../components/loading";
-import up from "./../components/up";
+import up from "../components/up";
 import direction from "./../components/direction";
 import header from "./../components/header";
 import typed from "../components/typed";
@@ -98,7 +103,7 @@ export default {
   data:function() {
     var that = this;
     return {
-      typedText: '这是一次声音的实验，我们要求您佩戴好耳机，跟随我们的脚步，一起进入一段轻松的旅程！',
+      typedText: '这是一次声音的实验<br>我们要求您佩戴好耳机<br>跟随我们的脚步<br>一起进入一段轻松的旅程',
       disabledScroll: false,
       isLoading: true,
       index: 0,
@@ -302,6 +307,21 @@ export default {
   .part-1-title {
     margin-bottom: 20px;
   }
+    .next-page {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      z-index: 1;
+      button {
+        background: transparent;
+        border: none;
+        outline: none;
+        &:hover, &:active, &:focus {
+          border: none;
+          outline: none;
+        }
+      }
+    }
   }
 }
 

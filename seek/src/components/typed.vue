@@ -29,8 +29,8 @@ export default {
 <style lang="less" scoped>
 .section__typed {
   .typing {
-    text-align: left;
-    padding: 40px;
+    width: 100%;
+    padding: 40px 0;
     font-size: 16px;
     line-height: 32px;
     font-weight: bold;
