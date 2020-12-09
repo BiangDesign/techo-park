@@ -2,13 +2,15 @@
   <div class="">
     <div class="fullpage-vertical">
       <div class="" v-fullpage="opts" ref="fullpage">
-        <div class="page-1 page" :class="{ 'show-page-1': !isLoading }">
+        <div
+          class="page-1 page"
+          :class="{ 'show-page-1': !isLoading }"
+          @click="moveTo(1)"
+        >
           <loading v-if="isLoading" />
           <div class="page-1-content">
             <div class="next-page">
-              <button @click="moveTo(1)">
-                <up />
-              </button>
+              <p>点击屏幕开始体验</p>
             </div>
             <div class="part-1-note">
               <img src="../../public/img/headset.gif" alt="headset" />
@@ -44,7 +46,8 @@
                   curStep === 3 ||
                   curStep === 5 ||
                   curStep === 6 ||
-                  curStep === 8) &&
+                  curStep === 8 ||
+                  curStep === 9) &&
                   canClick
               "
             />
@@ -52,11 +55,11 @@
             <direction location="right" v-if="curStep === 4 && canClick" />
             <fingerPrint v-if="curStep === 7 && canClick" />
           </div>
-          <div class="next-page" v-if="curStep === 9">
+          <!-- <div class="next-page" >
             <button>
               <up />
             </button>
-          </div>
+          </div> -->
           <div class="fullpage-horizontal">
             <div v-fullpage="horizontalOpts" ref="fullpageHorizontal">
               <div class="page-2 page"></div>
@@ -259,6 +262,7 @@ export default {
           console.log("杜浩");
           this.showBigImage = true;
           this.showEnd = true;
+          document.querySelector(".location-box").style.display = "none";
           this.endingWords = `我想你已经猜到了<br>小明是一个视障人士<br>在刚刚的旅途中，通过 AI 眼镜配合雷达测距，我们让小明看“见”了垃圾桶，认准了红绿灯。<br>通过AI语音识别，让人机交互更准确便捷。<br>物联网和云计算，让复杂的道路情况变得简单安全。<br>生物识别也嵌在了每个地方，不仅是支付或者万物互联都变得安全快速......<br>而在中国有和小明一样的上千万的盲人和低视力群体<br>我们相信，<br>在不久的将来，科技也会让他们的世界变得五彩斑斓。<br>点击屏幕，点亮小明的世界`;
         });
       }
@@ -344,7 +348,7 @@ export default {
 }
 .bottom-typed {
   position: fixed;
-  bottom: 450px;
+  bottom: 20px;
   color: white;
   width: 100%;
 }
