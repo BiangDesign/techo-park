@@ -12,11 +12,9 @@
             </div>
             <div class="part-1-note">
               <img src="../../public/img/headset.gif" alt="headset">
-            </div>
-            <div>
               <h1 class="part-1-title">听 · 见</h1>
-              <typed :text="typedText" @finished="handleTypedFinished"></typed>
             </div>
+            <typed :text="typedText" @finished="handleTypedFinished"></typed>
 <!--            <div>-->
 <!--              <button class="part-1 part-1-btn" @click="moveTo(1)">点击屏幕开始吧</button>-->
 <!--            </div>-->
@@ -309,6 +307,11 @@ export default {
       align-items: center;
       justify-content: center;
       width: 100%;
+      position: relative;
+      .part-1-title{
+        position: absolute;
+        top: 195px;
+      }
       img {
         width: 200px;
       }
