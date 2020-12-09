@@ -40,7 +40,7 @@
              <fingerPrint v-if="(curStep === 7 )&& canClick"/>
           </div>
           <div class="next-page" v-if="curStep >= 9">
-            <button @click="moveTo(2)">
+            <button>
               <up />
             </button>
           </div>
@@ -223,6 +223,12 @@ export default {
         // 上滑买花：buyFlowerAction
       if (this.curStep === 8 && this.canClick) {
         this.sliderDoor();
+      }
+
+      if (this.curStep === 9 && this.canClick) {
+        play(8, () => {
+          console.log('杜浩')
+        });
       }
     },
     // 第二步

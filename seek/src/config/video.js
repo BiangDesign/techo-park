@@ -16,12 +16,13 @@ function setImgage() {
   return imgs
 }
 class Video {
-  constructor(step) {
+  constructor(step, callback) {
     console.log('step', step)
     
     let _this = this;
     // 初始化进度
     _this.store = { length: 0 };
+    _this.callback = callback;
     _this.type = step;
     _this.percent = 0;
     _this.imgList = setImgage();
@@ -68,6 +69,10 @@ class Video {
     }
     if (_this.type === 6) {
       _this.indexRange = [224, 278];
+    }
+
+    if (_this.type === 8) {
+      _this.indexRange = [279, 355];
     }
     _this.store = { length: 0 };
     _this.percent = 0;
@@ -124,6 +129,9 @@ class Video {
     if (_this.type === 7) {
       _this.startRange = [82, 105];
     }
+    if (_this.type === 8) {
+      _this.startRange = [279, 355];
+    }
     _this.percent = Math.round(100 * _this.store.length / _this.maxLength);
     // console.log(_this.store.length, _this.percent)
     // _this.eleLoading.setAttribute('data-percent', _this.percent);
@@ -160,6 +168,9 @@ class Video {
         } else {
           // 本段播放结束回调
           // 我这里就放一个重新播放的按钮
+          if (_this.type === 8) {
+            _this.callback()
+          }
           // _this.eleContainer.insertAdjacentHTML('beforeEnd', '<button onclick="play()">再看一遍英姿</button>');
         }
       };
@@ -169,8 +180,8 @@ class Video {
   }
 }
 
-function video(step = 1) {
+function video(step = 1, callback = null) {
   console.log(step)
-  new Video(step)
+  new Video(step, callback)
 }
 export default video
