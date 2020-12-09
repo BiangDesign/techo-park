@@ -6,7 +6,7 @@
           <loading v-if=isLoading />
           <div class="page-1-content">
             <h1 class="part-1" v-animate="{value: 'bounceInLeft'}">看见</h1>
-            <p class="part-1-desc" v-animate="{value: 'bounceInLeft'}">这是一次声音的实验，我们要求您佩戴好耳机，跟随我们的脚步，一起进入一段轻松的旅程</p>
+            <typed :text="typedText" @finished="handleTypedFinished"></typed>
 <!--            <div>-->
 <!--              <button class="part-1 part-1-btn" @click="moveTo(1)">点击屏幕开始吧</button>-->
 <!--            </div>-->
@@ -75,16 +75,21 @@ import stateMixins from '../state.mixins'
 import loading from "./../components/loading";
 import up from "./../components/up";
 import direction from "./../components/direction";
+import header from "./../components/header";
+import typed from "../components/typed";
 export default {
   components: {
     loading,
     up,
     direction,
+    'v-header': header,
+    typed
   },
   mixins: [stateMixins],
   data:function() {
     var that = this;
     return {
+      typedText: '这是一次声音的实验，我们要求您佩戴好耳机，跟随我们的脚步，一起进入一段轻松的旅程！',
       disabledScroll: false,
       isLoading: true,
       index: 0,
@@ -112,7 +117,16 @@ export default {
           that.active2 = current;
         }
       },
-      active2:0
+      active2:0,
+      canvasObj: {
+        canvas: null,
+        ctx: null,
+        w: null,
+        h: null,
+        laser: null,
+        text: null,
+        particles: null
+      }
     };
   },
   watch: {
@@ -199,6 +213,10 @@ export default {
     // 向下
     swipeBottom(s, e) {
       console.log(s, e)
+    },
+    // 打字机效果播放结束之后
+    handleTypedFinished() {
+
     }
   },
   mounted() {
@@ -226,8 +244,10 @@ export default {
   color: #eee;
 }
 .page-1 {
-  background: #ababab;
+  background-image: url("../../public/img/homepage_bkg.jpg");
   position: relative;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   .page-1-content {
     opacity: 0;
     @keyframes typing {
@@ -239,19 +259,6 @@ export default {
        50% {
          border-color:transparent;
        }
-    }
-    .part-1-desc {
-      border-right:.1em solid;
-      width:16.5em;
-      /* fallback */
-      width:30ch;
-      /* # of chars */
-      margin:2em 1em;
-      white-space:nowrap;
-      word-break :break-word;
-      overflow:hidden;
-      animation:typing 3s steps(30,end),/* # of steps = # of chars */
-      blink-caret .5s step-end infinite alternate;
     }
   }
 }
