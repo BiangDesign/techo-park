@@ -38,7 +38,7 @@
                 <button @click="throughRoodFinish">第五步 前进</button>
                 <button @click="stepSixRight">第六步</button>
                 <button @click="longTouch">长按</button>
-                <button @click="setDisabled()">禁止滚动</button>
+                <!-- <button @click="setDisabled()">禁止滚动</button> -->
               </div>
             </div>
 <!--            <div class="fullpage-pagination">-->
@@ -108,8 +108,32 @@ export default {
       active2:0
     };
   },
+  watch: {
+    index: {
+      handler(newName, oldName) {
+        console.log('watch:' + 'oldName= '+ oldName + ', newName = ' + newName + ';');
+        if (newName === 1 && this.step < 8) {
+            this.setDisabled(true)
+        }
+      },
+      immediate: true
+    },
+    step: {
+      handler(newName, oldName) {
+        console.log('watch:' + 'oldName= '+ oldName + ', newName = ' + newName + ';');
+        if (this.index === 1 && newName >= 8) {
+            this.setDisabled(false)
+        }
+      },
+      immediate: true
+    }
+  },
   methods: {
     moveTo: function(index) {
+      if (index === 1) {
+        this.clickScreen()
+      }
+      console.log('-------------------------', index)
       this.$refs.fullpage.$fullpage.moveTo(index, true, true);
     },
     showPage: function() {
@@ -117,9 +141,10 @@ export default {
       this.$refs.fullpage.$fullpage.$update();
     },
     // 禁止翻页
-    setDisabled(){
-      this.disabledScroll = !this.disabledScroll;
-      '-------------------------'.log
+    setDisabled(flag){
+      // this.disabledScroll = !this.disabledScroll;
+       this.disabledScroll = flag;
+      // '-------------------------'.log
       console.log(this.disabledScroll);
       this.$refs.fullpage.$fullpage.setDisabled(this.disabledScroll)
     },
@@ -132,36 +157,43 @@ export default {
     },
     // 第一步 第三步
     swipeTop(s, e) {
-      if (this.$data.step === 1) {
-        console.log(s, e);
+      console.error('123', this.step, this.canClick)
+      // 第一步直行
+      if (this.step === 2 && this.canClick) {
+        this.clickUp();
       }
 
-      if (this.$data.step === 3) {
-        console.log(s, e);
+      // 第三步直行
+      if (this.step === 4 && this.canClick) {
+        this.throughRoodFinish();
       }
     },
     // 第二步
     swipeLeft(s, e) {
-      if (this.$data.step === 2) {
+      if (this.step === 3 && this.canClick) {
         console.log(s, e);
+        this.clickLeft();
       }
     },
     // 第四步
     swipeRight(s, e) {
-      if (this.$data.step === 4) {
+      if (this.step === 5 && this.canClick) {
         console.log(s, e);
+        this.stepSixRight()
       }
     },
     // 第五部：长按
     longTap(s, e) {
-      if (this.$data.step === 5) {
+      if (this.step === 7 && this.canClick) {
         console.log(s, e);
+        this.longTouch()
       }
     },
   },
   mounted() {
     setTimeout(() => {
       this.isLoading = false;
+      this.start()
     }, 3000)
   }
 };
