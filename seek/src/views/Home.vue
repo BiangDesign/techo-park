@@ -5,8 +5,13 @@
         <div class="page-1 page" :class="{'show-page-1': !isLoading}">
           <loading v-if=isLoading />
           <div class="page-1-content">
-            <h1 class="part-1" v-animate="{value: 'bounceInLeft'}">看见</h1>
-            <typed :text="typedText" @finished="handleTypedFinished"></typed>
+            <div class="part-1-note">
+              <img src="../../public/img/headset.gif" alt="headset">
+            </div>
+            <div>
+              <h1 class="part-1-title">看“见”</h1>
+              <typed :text="typedText" @finished="handleTypedFinished"></typed>
+            </div>
 <!--            <div>-->
 <!--              <button class="part-1 part-1-btn" @click="moveTo(1)">点击屏幕开始吧</button>-->
 <!--            </div>-->
@@ -270,16 +275,22 @@ export default {
   background-repeat: no-repeat;
   .page-1-content {
     opacity: 0;
-    @keyframes typing {
-      from {
-        width:0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    .part-1-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      img {
+        width: 200px;
       }
     }
-    @keyframes blink-caret {
-       50% {
-         border-color:transparent;
-       }
-    }
+  .part-1-title {
+    margin-bottom: 20px;
+  }
   }
 }
 
