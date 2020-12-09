@@ -1,6 +1,8 @@
 import { Howl } from "howler";
 
-
+function prefix(names) {
+  return `http://my-bucket-1302247330.cos-website.ap-guangzhou.myqcloud.com/voices/${names}.mp3`
+}
 export function playAudioByStep(step) {
   audioList[step].forEach(item => {
     let temp = require(`../assets/audio/${item}.mp3`);
@@ -21,9 +23,11 @@ export function playPro(s, text) {
   })
 }
 export function playOneAudio(url) {
+  console.error('播放', url)
+  const urlpre = prefix(url)
   return new Promise(resolve => {
     let sound = new Howl({
-      src: [url],
+      src: [urlpre],
       onend() {
         resolve(sound);
       }
@@ -34,9 +38,11 @@ export function playOneAudio(url) {
 }
 
 export function playBackStop(url) {
+  const urlpre = prefix(url)
+  console.error('播放', url)
   return new Promise(resolve => {
     let sound = new Howl({
-      src: [url]
+      src: [urlpre]
     });
     sound.play();
     resolve(sound)
