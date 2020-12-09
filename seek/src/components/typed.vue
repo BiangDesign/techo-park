@@ -30,7 +30,7 @@ export default {
 .section__typed {
   .typing {
     width: 100%;
-    padding: 40px;
+    padding: 40px 0;
     font-size: 16px;
     line-height: 32px;
     font-weight: bold;
