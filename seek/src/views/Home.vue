@@ -1,10 +1,15 @@
 <template>
-  <div class="" @click="moveTo(1)">
+  <div class="">
     <div class="fullpage-vertical">
       <div class="" v-fullpage="opts" ref="fullpage">
         <div class="page-1 page" :class="{'show-page-1': !isLoading}">
-          <loading  />
+          <loading v-if=isLoading />
           <div class="page-1-content">
+            <div class="next-page">
+              <button @click="moveTo(1)">
+                <up />
+              </button>
+            </div>
             <div class="part-1-note">
               <img src="../../public/img/headset.gif" alt="headset">
             </div>
@@ -78,7 +83,7 @@
 <script>
 import stateMixins from '../state.mixins'
 import loading from "./../components/loading";
-import up from "./../components/up";
+import up from "../components/up";
 import direction from "./../components/direction";
 import header from "./../components/header";
 import typed from "../components/typed";
@@ -291,6 +296,21 @@ export default {
   .part-1-title {
     margin-bottom: 20px;
   }
+    .next-page {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      z-index: 1;
+      button {
+        background: transparent;
+        border: none;
+        outline: none;
+        &:hover, &:active, &:focus {
+          border: none;
+          outline: none;
+        }
+      }
+    }
   }
 }
 
