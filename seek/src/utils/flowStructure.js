@@ -96,10 +96,10 @@ function playAudio(audioName) {
 export async function playStory(scenesStep, story) {
   return new Promise(resolve => {
     let sounds = flowStructure.scenes[scenesStep].stories[story].sounds;
-    sounds.forEach(item => {
+    for(let i = 0; i < sounds.length; i++) {
       await playAudio(item);
       await awaitTime(soundPauseTime);
-    });
+    }
     resolve();
   });
 }

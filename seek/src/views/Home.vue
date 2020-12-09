@@ -6,7 +6,10 @@
           <loading v-if=isLoading />
           <div class="page-1-content">
             <h1 class="part-1" v-animate="{value: 'bounceInLeft'}">看见</h1>
-            <p class="part-1-desc" v-animate="{value: 'bounceInLeft'}">这是一次声音的实验，我们要求您佩戴好耳机，跟随我们的脚步，一起进入一段轻松的旅程</p>
+            <typed :text="typedText" @finished="handleTypedFinished"></typed>
+<!--            <div>-->
+<!--              <button class="part-1 part-1-btn" @click="moveTo(1)">点击屏幕开始吧</button>-->
+<!--            </div>-->
           </div>
         </div>
         <div class="page-2 page"
@@ -73,18 +76,20 @@ import loading from "./../components/loading";
 import up from "./../components/up";
 import direction from "./../components/direction";
 import header from "./../components/header";
-
+import typed from "../components/typed";
 export default {
   components: {
     loading,
     up,
     direction,
     'v-header': header,
+    typed
   },
   mixins: [stateMixins],
   data:function() {
     var that = this;
     return {
+      typedText: '这是一次声音的实验，我们要求您佩戴好耳机，跟随我们的脚步，一起进入一段轻松的旅程！',
       disabledScroll: false,
       isLoading: true,
       index: 0,
@@ -208,6 +213,10 @@ export default {
     // 向下
     swipeBottom(s, e) {
       console.log(s, e)
+    },
+    // 打字机效果播放结束之后
+    handleTypedFinished() {
+
     }
   },
   mounted() {
