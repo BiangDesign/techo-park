@@ -104,6 +104,8 @@ import direction from "./../components/direction";
 import fingerPrint from "./../components/finger-print";
 import typed from "../components/typed";
 import play from "../config/video";
+import { playPro, playBackStop, playOneAudio } from "../utils/playAudio";
+
 export default {
   components: {
     loading,
@@ -306,6 +308,8 @@ export default {
       document.querySelector("#big-image").style.width = "100%";
     },
     setImgOpacity() {
+      // 播放菊次郎
+      playOneAudio("summer");
       document.querySelector("#big-image").style.opacity = "1";
       document.querySelector("#big-image").style.transition = "3s";
       document.querySelector(".big-image p").style.display = "block";
