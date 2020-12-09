@@ -44,6 +44,7 @@
             <div v-fullpage="horizontalOpts" ref="fullpageHorizontal">
               <div class="page-2 page">
                 <h2 class="part-2" v-animate="{value: 'bounceInRight'}">场景操作</h2>
+                <fingerPrint />
                 <p v-animate="{value: 'bounceInRight'}">各种滑动</p>
 <!--                <button @click="start">开始</button>-->
 <!--                <button @click="clickScreen">点击屏幕开始</button>-->
@@ -85,14 +86,14 @@ import stateMixins from '../state.mixins'
 import loading from "./../components/loading";
 import up from "../components/up";
 import direction from "./../components/direction";
-import header from "./../components/header";
+import fingerPrint from "./../components/finger-print";
 import typed from "../components/typed";
 export default {
   components: {
     loading,
     up,
     direction,
-    'v-header': header,
+    fingerPrint,
     typed
   },
   mixins: [stateMixins],
