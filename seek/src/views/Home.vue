@@ -12,11 +12,12 @@
             </div>
             <div class="part-1-note">
               <img src="../../public/img/headset.gif" alt="headset" />
-            </div>
-            <div>
               <h1 class="part-1-title">听 · 见</h1>
-              <typed :text="typedText" @finished="handleTypedFinished"></typed>
             </div>
+            <!--            <div>-->
+            <!--              <button class="part-1 part-1-btn" @click="moveTo(1)">点击屏幕开始吧</button>-->
+            <!--            </div>-->
+            <typed :text="typedText" @finished="handleTypedFinished"></typed>
             <!--            <div>-->
             <!--              <button class="part-1 part-1-btn" @click="moveTo(1)">点击屏幕开始吧</button>-->
             <!--            </div>-->
@@ -362,31 +363,43 @@ export default {
   color: #eee;
 }
 .page-1 {
-  background-image: url("../../public/img/homepage_bkg.jpg");
   position: relative;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
   .page-1-content {
+    background-image: url("../../public/img/homepage_bkg.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
     opacity: 0;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    position: relative;
     .part-1-note {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
+      position: absolute;
+      top: 80px;
+      .part-1-title {
+        position: absolute;
+        top: 195px;
+      }
       img {
         width: 200px;
       }
+    }
+    .section__typed {
+      position: absolute;
+      width: 100%;
+      bottom: 100px;
     }
     .part-1-title {
       margin-bottom: 20px;
     }
     .next-page {
       position: absolute;
-      bottom: 0;
+      bottom: 20px;
       width: 100%;
       z-index: 1;
       button {
@@ -565,25 +578,6 @@ button.disabled-btn {
   height: 100%;
 }
 .loading {
-  position: absolute;
-  height: 8px;
-  width: 150px;
-  border: 1px solid #eee;
-  background: linear-gradient(to top, #eee, #eee);
-  background-size: 0 100%;
-  transition: background-size 0.1s;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-}
-.loading::before {
-  content: attr(data-percent) "%";
-  position: absolute;
-  left: 0;
-  top: -1.5em;
-  font-size: 12px;
-  color: #eee;
+  background: #000000;
 }
 </style>
