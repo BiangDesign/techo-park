@@ -21,11 +21,11 @@
              v-swipedown="(e) => swipeBottom('bottom', e)"
         >
           <div class="location-box">
-            <direction location="top" v-if="(step === 2 || step === 4 )&& canClick"/>
-            <direction location="left" v-if="(step === 3 )&& canClick"/>
-            <direction location="right" v-if="(step === 5 )&& canClick"/>
+            <direction location="top" v-if="(curStep === 0 || curStep === 1 ||curStep === 3 ||curStep === 5 ||curStep === 6 ||curStep === 8 )&& canClick"/>
+            <direction location="left" v-if="(curStep === 2 )&& canClick"/>
+            <direction location="right" v-if="(curStep === 4 )&& canClick"/>
           </div>
-          <div class="next-page" v-if="step >= 8">
+          <div class="next-page" v-if="curStep >= 9">
             <button @click="moveTo(2)">
               <up />
             </button>
@@ -179,35 +179,55 @@ export default {
     // 第一步 第三步
     swipeTop(s, e) {
       console.error('123', this.step, this.canClick)
-      // 第一步直行
-      if (this.step === 2 && this.canClick) {
+      if (this.curStep === 0 && this.canClick) {
         this.clickUp();
       }
+      // 播放宁夏
+      if (this.curStep === 1 && this.canClick) {
+        this.playSummer();
+      }
 
-      // 第三步直行
-      if (this.step === 4 && this.canClick) {
-        this.throughRoodFinish();
+      // 过红绿灯
+      if (this.curStep === 3 && this.canClick) {
+        this.crossStreetAction();
+      }
+
+       // 上滑，进入商店
+      if (this.curStep === 5 && this.canClick) {
+        this.flowerShop();
+      }
+       // 上滑买花：buyFlowerAction
+      if (this.curStep === 6 && this.canClick) {
+        this.buyFlowerAction();
+      }
+        // 上滑买花：buyFlowerAction
+      if (this.curStep === 8 && this.canClick) {
+        this.sliderDoor();
       }
     },
     // 第二步
     swipeLeft(s, e) {
-      if (this.step === 3 && this.canClick) {
+      // if (this.step === 3 && this.canClick) {
+      //   console.log(s, e);
+      //   this.clickLeft();
+      // }
+      if (this.curStep === 2 && this.canClick) {
         console.log(s, e);
-        this.clickLeft();
+        this.truanLeft();
       }
     },
     // 第四步
     swipeRight(s, e) {
-      if (this.step === 5 && this.canClick) {
+      if (this.curStep === 4 && this.canClick) {
         console.log(s, e);
-        this.stepSixRight()
+        this.turnRightAction()
       }
     },
     // 第五部：长按
     longTap(s, e) {
-      if (this.step === 7 && this.canClick) {
+      if (this.curStep === 7 && this.canClick) {
         console.log(s, e);
-        this.longTouch()
+        this.longClick()
       }
     },
     // 向下
