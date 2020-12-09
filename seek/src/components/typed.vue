@@ -1,10 +1,12 @@
 <template>
-  <div class="section__typed" @click="bindComplete">
-    <vue-typed-js :strings="[text]"
-                  :typeSpeed="100"
-                  :startDelay="4000"
-                  :showCursor="false"
-                  @onComplete="bindComplete">
+  <div class="section__typed" :class="classess" @click="bindComplete">
+    <vue-typed-js
+      :strings="[text]"
+      :typeSpeed="100"
+      :startDelay="4000"
+      :showCursor="false"
+      @onComplete="bindComplete"
+    >
       <div class="typing"></div>
     </vue-typed-js>
   </div>
@@ -15,25 +17,31 @@ export default {
   props: {
     text: {
       type: String,
-      default: ''
-    }
+      default: "",
+    },
+    classess: {
+      type: String,
+      default: "",
+    },
   },
   methods: {
     bindComplete() {
-      this.$emit('finished');
-    }
-  }
-}
+      this.$emit("finished");
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
 .section__typed {
   .typing {
     width: 100%;
-    padding: 40px 0;
-    font-size: 16px;
+    padding: 40px 20px;
+    font-size: 14px;
     line-height: 32px;
     font-weight: bold;
+    text-align: center;
+    box-sizing: border-box;
   }
 }
 </style>
