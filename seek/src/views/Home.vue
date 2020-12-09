@@ -130,11 +130,13 @@ export default {
   },
   methods: {
     moveTo: function(index) {
-      if (index === 1) {
+      if (this.step === 1 && this.canClick && index === 1) {  // 当第一页语音播放完成后 按钮可点击
         this.clickScreen()
+        this.$refs.fullpage.$fullpage.moveTo(index, true, true);
       }
-      console.log('-------------------------', index)
-      this.$refs.fullpage.$fullpage.moveTo(index, true, true);
+      if (index >= 2) {
+        this.$refs.fullpage.$fullpage.moveTo(index, true, true);
+      }
     },
     showPage: function() {
       this.pageNum++;
