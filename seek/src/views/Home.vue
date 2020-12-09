@@ -37,6 +37,7 @@
             <direction location="top" v-if="(curStep === 0 || curStep === 1 ||curStep === 3 ||curStep === 5 ||curStep === 6 ||curStep === 8 )&& canClick"/>
             <direction location="left" v-if="(curStep === 2 )&& canClick"/>
             <direction location="right" v-if="(curStep === 4 )&& canClick"/>
+             <fingerPrint v-if="(curStep === 7 )&& canClick"/>
           </div>
           <div class="next-page" v-if="curStep >= 9">
             <button @click="moveTo(2)">
@@ -46,6 +47,7 @@
           <div class="fullpage-horizontal">
             <div v-fullpage="horizontalOpts" ref="fullpageHorizontal">
               <div class="page-2 page">
+                
                 <!-- <h2 class="part-2" v-animate="{value: 'bounceInRight'}">场景操作</h2> -->
                 <!-- <p v-animate="{value: 'bounceInRight'}">各种滑动</p> -->
 <!--                <button @click="start">开始</button>-->
@@ -88,7 +90,7 @@ import stateMixins from '../state.mixins'
 import loading from "./../components/loading";
 import up from "../components/up";
 import direction from "./../components/direction";
-import header from "./../components/header";
+import fingerPrint from "./../components/finger-print";
 import typed from "../components/typed";
 import play from '../config/video';
 export default {
@@ -96,7 +98,7 @@ export default {
     loading,
     up,
     direction,
-    'v-header': header,
+    fingerPrint,
     typed
   },
   mixins: [stateMixins],

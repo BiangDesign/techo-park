@@ -70,6 +70,11 @@ export const flowStructure = {
     }, {
       sounds: ['bgm_9_0', 'ai_9_1']
     }]
+  },{
+    name: 'ending',
+    stories: [{
+      sounds: ['tips_10_0']
+    }]
   }]
 };
 
