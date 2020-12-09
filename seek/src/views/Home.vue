@@ -1,15 +1,15 @@
 <template>
-  <div class="">
+  <div class="" @click="moveTo(1)">
     <div class="fullpage-vertical">
       <div class="" v-fullpage="opts" ref="fullpage">
         <div class="page-1 page" :class="{'show-page-1': !isLoading}">
           <loading v-if=isLoading />
           <div class="page-1-content">
-            <h1 class="part-1" v-animate="{value: 'bounceInLeft'}">盲人世界</h1>
-            <h3 class="" v-animate="{value: 'bounceInLeft'}">这是一次声音的实验，我们要求您佩戴好耳机，跟随我们的脚步，一起进入一段轻松的旅程</h3>
-            <div>
-              <button class="part-1 part-1-btn" @click="moveTo(1)">点击屏幕开始吧</button>
-            </div>
+            <h1 class="part-1" v-animate="{value: 'bounceInLeft'}">看见</h1>
+            <p class="part-1-desc" v-animate="{value: 'bounceInLeft'}">这是一次声音的实验，我们要求您佩戴好耳机，跟随我们的脚步，一起进入一段轻松的旅程</p>
+<!--            <div>-->
+<!--              <button class="part-1 part-1-btn" @click="moveTo(1)">点击屏幕开始吧</button>-->
+<!--            </div>-->
           </div>
         </div>
         <div class="page-2 page"
@@ -151,9 +151,7 @@ export default {
     },
     // 禁止翻页
     setDisabled(flag){
-      // this.disabledScroll = !this.disabledScroll;
        this.disabledScroll = flag;
-      // '-------------------------'.log
       console.log(this.disabledScroll);
       this.$refs.fullpage.$fullpage.setDisabled(this.disabledScroll)
     },
@@ -232,6 +230,29 @@ export default {
   position: relative;
   .page-1-content {
     opacity: 0;
+    @keyframes typing {
+      from {
+        width:0;
+      }
+    }
+    @keyframes blink-caret {
+       50% {
+         border-color:transparent;
+       }
+    }
+    .part-1-desc {
+      border-right:.1em solid;
+      width:16.5em;
+      /* fallback */
+      width:30ch;
+      /* # of chars */
+      margin:2em 1em;
+      white-space:nowrap;
+      word-break :break-word;
+      overflow:hidden;
+      animation:typing 3s steps(30,end),/* # of steps = # of chars */
+      blink-caret .5s step-end infinite alternate;
+    }
   }
 }
 
