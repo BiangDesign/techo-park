@@ -29,7 +29,7 @@ export default {
 <style lang="less" scoped>
 .section__typed {
   .typing {
-    text-align: left;
+    width: 100%;
     padding: 40px;
     font-size: 16px;
     line-height: 32px;

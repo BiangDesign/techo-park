@@ -94,7 +94,7 @@ export default {
   data:function() {
     var that = this;
     return {
-      typedText: '这是一次声音的实验，我们要求您佩戴好耳机，跟随我们的脚步，一起进入一段轻松的旅程！',
+      typedText: '这是一次声音的实验<br>我们要求您佩戴好耳机<br>跟随我们的脚步<br>一起进入一段轻松的旅程',
       disabledScroll: false,
       isLoading: true,
       index: 0,
