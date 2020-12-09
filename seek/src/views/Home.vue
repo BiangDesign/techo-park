@@ -9,7 +9,7 @@
               <img src="../../public/img/headset.gif" alt="headset">
             </div>
             <div>
-              <h1 class="part-1-title">看“见”</h1>
+              <h1 class="part-1-title">听 · 见</h1>
               <typed :text="typedText" @finished="handleTypedFinished"></typed>
             </div>
 <!--            <div>-->
