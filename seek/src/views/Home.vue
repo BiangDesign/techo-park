@@ -264,6 +264,7 @@ export default {
     setTimeout(() => {
       this.isLoading = false;
       this.start()
+      this.setDisabled(true)
     }, 3000)
   }
 };

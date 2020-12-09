@@ -25,7 +25,7 @@ class Video {
     _this.type = step;
     _this.percent = 0;
     _this.imgList = setImgage();
-    console.log( setImgage())
+    console.log(setImgage())
     // if (!document.getElementById('loading')) {
     //   let spansn = document.createElement("span")
     //   <span id="loading" class="loading" data-percent="0"></span>
