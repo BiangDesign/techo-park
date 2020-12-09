@@ -29,8 +29,8 @@
              v-swipedown="(e) => swipeBottom('bottom', e)"
         >
          <div id="container" class="container">
-          <span id="loading" class="loading" data-percent="0"></span>
-        </div>
+
+          </div>
           <div class="location-box">
             <direction location="top" v-if="(curStep === 0 || curStep === 1 ||curStep === 3 ||curStep === 5 ||curStep === 6 ||curStep === 8 )&& canClick"/>
             <direction location="left" v-if="(curStep === 2 )&& canClick"/>
@@ -292,22 +292,24 @@ export default {
   color: #eee;
 }
 .page-1 {
-  background-image: url("../../public/img/homepage_bkg.jpg");
   position: relative;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
   .page-1-content {
+    background-image: url("../../public/img/homepage_bkg.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
     opacity: 0;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    position: relative;
     .part-1-note {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
-      position: relative;
+      position: absolute;
+      top: 80px;
       .part-1-title{
         position: absolute;
         top: 195px;
@@ -315,6 +317,11 @@ export default {
       img {
         width: 200px;
       }
+    }
+    .section__typed {
+      position: absolute;
+      width: 100%;
+      bottom: 100px;
     }
   .part-1-title {
     margin-bottom: 20px;
@@ -492,20 +499,6 @@ button.disabled-btn{
     width: 100%; height: 100%;
 }
 .loading {
-    position: absolute;
-    height: 8px; width: 150px;
-    border: 1px solid #eee;
-    background: linear-gradient(to top, #eee, #eee);
-    background-size: 0 100%;
-    transition: background-size .1s;
-    left: 0; top: 0; right: 0; bottom: 0;
-    margin: auto;
-}
-.loading::before {
-    content: attr(data-percent)'%';
-    position: absolute;
-    left: 0; top: -1.5em;
-    font-size: 12px;
-    color: #eee;
+  background: #000000;
 }
 </style>
