@@ -20,7 +20,12 @@
             v-swipeup="(e) => swipeTop('top', e)"
              v-swipedown="(e) => swipeBottom('bottom', e)"
         >
-          <div class="next-page">
+          <div class="location-box">
+            <direction location="top" v-if="(step === 2 || step === 4 )&& canClick"/>
+            <direction location="left" v-if="(step === 3 )&& canClick"/>
+            <direction location="right" v-if="(step === 5 )&& canClick"/>
+          </div>
+          <div class="next-page" v-if="step >= 8">
             <button @click="moveTo(2)">
               <up />
             </button>
@@ -69,10 +74,12 @@
 import stateMixins from '../state.mixins'
 import loading from "./../components/loading";
 import up from "./../components/up";
+import direction from "./../components/direction";
 export default {
   components: {
     loading,
     up,
+    direction,
   },
   mixins: [stateMixins],
   data:function() {
@@ -191,6 +198,10 @@ export default {
         this.longTouch()
       }
     },
+    // 向下
+    swipeBottom(s, e) {
+      console.log(s, e)
+    }
   },
   mounted() {
     setTimeout(() => {
@@ -356,5 +367,13 @@ p {
 button.disabled-btn{
   background: red;
   color: #fff;
+}
+.location-box {
+   position: absolute;
+    bottom: 50%;
+    width: 100%;
+    left: 0;
+    z-index: 1;
+
 }
 </style>
