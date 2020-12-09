@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       step: 0,
-      curStep: 0,
+      curStep: -1,
       canClick: true,
       isFinish: false,
       // 公园背景
@@ -105,17 +105,17 @@ export default {
     },
     async crossStreet() {
       const stories = flowStructure.scenes[this.step].stories
-      
-      for(let item in stories[0].sounds) {
-        console.log(stories[0].sounds[item])
-        sleep(1000)
-        await playOneAudio(stories[0].sounds[item])
-      }
 
       for(let item in stories[1].sounds) {
         console.log(stories[1].sounds[item])
         sleep(1000)
         await playOneAudio(stories[1].sounds[item])
+      }
+      
+      for(let item in stories[0].sounds) {
+        console.log(stories[0].sounds[item])
+        sleep(1000)
+        await playOneAudio(stories[0].sounds[item])
       }
       // 等待如意调用过红绿灯
       this.canClick = true
@@ -155,9 +155,7 @@ export default {
         await playOneAudio(stories[0].sounds[item])
       }
       this.canClick = true
-      // 等待如意滑动屏幕
-      this.flowerShop()
-
+      this.curStep++
     },
     // 进商店，播放背景音乐
     async flowerShop() {
@@ -223,6 +221,7 @@ export default {
         await playOneAudio(stories[1].sounds[item])
       }
       this.step++
+      this.curStep++
     },
   }
 }
