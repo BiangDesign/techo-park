@@ -220,8 +220,19 @@ export default {
         sleep(1000)
         await playOneAudio(stories[1].sounds[item])
       }
-      this.step++
+      this.step = 9
       this.curStep++
+      this.ending()
+    },
+    // 上滑屏幕回顾小明走过的路
+    async ending() {
+      const stories = flowStructure.scenes[this.step].stories
+      for(let item in stories[0].sounds) {
+        console.log(stories[0].sounds[item])
+        sleep(1000)
+        await playOneAudio(stories[0].sounds[item])
+      }
+      this.canClick = true
     },
   }
 }
