@@ -18,6 +18,12 @@ https://www.yuque.com/pg0dnm/hkhggr/eofrs0
 
 ### 项目地址
 
+#### 扫码
+
+![code](./seek/src/assets/1111607567516_.pic.jpg)
+
+#### 链接
+
 http://my-bucket-1302247330.cos-website.ap-guangzhou.myqcloud.com/
 
 ### 项目成员
